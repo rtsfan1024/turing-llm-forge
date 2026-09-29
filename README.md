@@ -155,14 +155,12 @@ Claude Code ──→ LiteLLM ──→ vllm-proxy ──→ vLLM 2080 Ti Defini
 
 ### 2.7 增加踩坑知识库
 
-本项目积累的 6 个血泪教训（见第九章），每一个都是实际生产中踩出来的：
+本项目积累的 4 个血泪教训（见第九章），每一个都是实际生产中踩出来的：
 
 1. FP8 KV Cache 是验证过的设计，不是 bug
 2. 代理层参数裸奔导致乱码
 3. 代码回归（删除防崩逻辑）
-4. DFlash2 在创作文本上的 reject 扰动
-5. Claude Code 巨型 System Prompt 语境稀释
-6. 代理层强制流式与 LiteLLM 协议冲突
+4. 代理层强制流式与 LiteLLM 协议冲突
 
 **这些知识无法从上游文档获得，是本项目独有的工程价值。**
 
@@ -536,19 +534,7 @@ nvidia-settings -a "[gpu:1]/GPUFanControlState=0"
 
 **教训**：修改已有函数时，必须保留所有现有逻辑，只做增量添加。
 
-### 坑 4：DFlash2/7 在创作文本上的 reject 扰动
-
-**问题**：7 个 speculative tokens 在自由创作时频繁 reject，引入数值扰动。
-
-**当前状态**：暂未调整。如仍偶发乱码，考虑降到 4。
-
-### 坑 5：Claude Code 巨型 System Prompt 的语境稀释
-
-**问题**：15K-20K token 的英文工具定义对中文创作造成严重先验污染。
-
-**建议**：Claude Code 专机专用（跑代码），纯创作分流到 OpenClaw。
-
-### 坑 6：代理层强制流式与 LiteLLM 协议冲突
+### 坑 4：代理层强制流式与 LiteLLM 协议冲突
 
 **问题**：`body["stream"] = True` 强制覆盖，导致 LiteLLM 非流式请求解析失败。
 
