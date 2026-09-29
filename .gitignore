@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+venv/
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Model weights (too large for GitHub)
+*.safetensors
+*.bin
+*.pt
+*.pth
+models/
+checkpoints/
+
+# Runtime data
+*.pid
+*.sock
