@@ -1,33 +1,16 @@
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.egg-info/
-.venv/
-venv/
+# 忽略所有文件/目录（商业化，仅保留 README + 图片）
+*
 
-# Logs
-*.log
-logs/
+# 保留以下文件
+!.gitignore
+!README.md
 
-# OS
-.DS_Store
-Thumbs.db
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# Model weights (too large for GitHub)
-*.safetensors
-*.bin
-*.pt
-*.pth
-models/
-checkpoints/
-
-# Runtime data
-*.pid
-*.sock
+# 保留 picture 目录及 README 引用的图片
+!picture/
+picture/*
+!picture/monitor.png
+!picture/nvidia-smi.png
+!picture/1.jpg
+!picture/2.jpg
+!picture/3.jpg
+!picture/4.jpg
